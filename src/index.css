@@ -1,1 +1,5 @@
-@import "tailwindcss";
+@import "tailwindcss"; 
+
+.pG{
+    background-color: #2BF388;
+}
