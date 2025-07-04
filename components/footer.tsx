@@ -1,146 +1,118 @@
-// FAQSignupSection.tsx
-import React, { useState } from "react";
+import React from 'react';
 import {
-  Mail,
-  Link as LinkIcon,
   Instagram,
-  ChevronDown,
-  ChevronUp,
-} from "lucide-react";
+  Twitter,
+  Linkedin,
+  Youtube
+} from 'lucide-react';
 
-interface FAQ {
-  question: string;
-  answer: string;
-}
-
-const faqs: FAQ[] = [
-  {
-    question: "What is the Studomia Academy, and how does it work?",
-    answer: "The Studomia Academy is ... [your detailed answer here].",
-  },
-  {
-    question: "How can I enroll in a specific course or program?",
-    answer: "To enroll, first ... [your detailed answer here].",
-  },
-  {
-    question:
-      "How are the courses taught? Is it all online, or are there in-person components?",
-    answer: "Our courses are ... [your detailed answer here].",
-  },
-];
-
-export default function FAQSignupSection() {
-  const [openIdx, setOpenIdx] = useState<number | null>(null);
-
-  const toggle = (i: number) => {
-    setOpenIdx(openIdx === i ? null : i);
-  };
-
+const Footer = () => {
   return (
-    <section className="bg-green-50 py-16">
-      <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12">
-        {/* FAQs */}
-        <div>
-          <p className="text-sm font-semibold text-green-600">FAQs</p>
-          <h2 className="mt-2 text-3xl font-extrabold text-indigo-600">
-            Frequently Asked Questions
-          </h2>
-          <p className="mt-2 text-gray-700">
-            Discover How Studomia Supports Your Amazing Learning Journey!
+    <footer className="bg-white border-t border-gray-200 px-6 py-10 text-sm text-gray-600">
+      {/* Logo & Tagline */}
+      <div className="max-w-7xl mx-auto">
+        <div className="mb-6">
+          <div className="flex items-center space-x-2 text-blue-800 text-3xl font-bold">
+            {/* Placeholder for logo */}
+            <div className="w-6 h-6 bg-blue-700 rounded-full" />
+            <span>Studomia</span>
+          </div>
+          <p className="mt-2 text-gray-500">
+            Empowering learners, creators, and educators to thrive with purpose.
           </p>
+        </div>
 
-          <div className="mt-6 space-y-4">
-            {faqs.map((faq, i) => (
-              <div key={i} className="border-b border-gray-200 pb-4">
-                <button
-                  onClick={() => toggle(i)}
-                  className="flex justify-between items-center w-full text-left text-indigo-700 font-medium"
-                >
-                  {faq.question}
-                  <span className="ml-4">
-                    {openIdx === i ? (
-                      <ChevronUp className="w-5 h-5" />
-                    ) : (
-                      <ChevronDown className="w-5 h-5" />
-                    )}
-                  </span>
-                </button>
-                {openIdx === i && (
-                  <p className="mt-2 text-gray-800 text-sm">{faq.answer}</p>
-                )}
-              </div>
-            ))}
+        {/* Links Section */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 text-gray-700">
+          <div>
+            <h4 className="font-semibold mb-2">🚀 Get Started</h4>
+            <ul className="space-y-1">
+              <li>Join Free</li>
+              <li>Take the Quiz</li>
+              <li>Build Profile</li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="font-semibold mb-2">🎯 Platform</h4>
+            <ul className="space-y-1">
+              <li>For Learners</li>
+              <li>For Creators</li>
+              <li>For Educators</li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="font-semibold mb-2">🎟 Events & Guild</h4>
+            <ul className="space-y-1">
+              <li>Upcoming Events</li>
+              <li>Join the Guild</li>
+              <li>Become a Partner</li>
+              <li>Host or Sponsor an Event</li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="font-semibold mb-2">🔬 Research & R&D</h4>
+            <ul className="space-y-1">
+              <li>Join R&D Circle</li>
+              <li>Submit Feedback</li>
+              <li>Become a Contributor</li>
+              <li>Join Our L&D Team</li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="font-semibold mb-2">📚 Resources</h4>
+            <ul className="space-y-1">
+              <li>FAQs</li>
+              <li>Research and Insights</li>
+              <li>Support</li>
+            </ul>
           </div>
         </div>
 
-        {/* Sign-Up Form */}
-        <div className="bg-white p-8 rounded-xl shadow">
-          <h3 className="text-xl font-bold text-gray-900 mb-6">
-            Join Studomia Now
-          </h3>
-          <form className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Email Address
-              </label>
-              <input
-                type="email"
-                placeholder="you@example.com"
-                className="mt-1 block w-full border border-indigo-500 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-300"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Role
-              </label>
-              <select
-                className="mt-1 block w-full border border-indigo-500 rounded-full px-4 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-300"
-              >
-                <option>Educator</option>
-                <option>Administrator</option>
-                <option>Student</option>
-                <option>Other</option>
-              </select>
-            </div>
+        {/* Newsletter Signup */}
+        <div className="mt-10 border-t pt-6">
+          <h4 className="text-xl font-semibold text-blue-600">Newsletter Signup</h4>
+          <p className="mt-1 text-gray-500">📩 Get insights, early access, and Guild updates.</p>
+          <form className="mt-4 flex flex-col sm:flex-row gap-2 sm:items-center">
+            <input
+              type="email"
+              placeholder="Enter Your Email"
+              className="w-full sm:w-auto px-4 py-2 border rounded-full outline-none focus:ring-2 focus:ring-blue-300"
+            />
             <button
               type="submit"
-              className="w-full mt-4 bg-indigo-600 text-white font-semibold rounded-full px-6 py-3 hover:bg-indigo-700 transition"
+              className="px-6 py-2 bg-green-500 text-white rounded-full hover:bg-green-600 transition"
             >
-              Sign Up
+              Subscribe
             </button>
           </form>
         </div>
-      </div>
 
-      {/* Footer */}
-      <footer className="mt-16 border-t border-gray-200 pt-8">
-        <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
+        {/* Bottom Links */}
+        <div className="mt-10 flex flex-col sm:flex-row justify-between items-center text-xs gap-4 text-gray-500 border-t pt-4">
           {/* Social Icons */}
-          <div className="flex space-x-4 mb-6 md:mb-0">
-            <Mail className="w-6 h-6 text-indigo-600" />
-            <LinkIcon className="w-6 h-6 text-indigo-600" />
-            <Instagram className="w-6 h-6 text-indigo-600" />
+          <div className="flex gap-4 text-blue-600">
+            <Instagram className="w-5 h-5 hover:scale-110 transition" />
+            <Twitter className="w-5 h-5 hover:scale-110 transition" />
+            <Linkedin className="w-5 h-5 hover:scale-110 transition" />
+            <Youtube className="w-5 h-5 hover:scale-110 transition" />
           </div>
 
-          {/* Links */}
-          <div className="flex space-x-6 text-gray-700">
-            <a href="#" className="hover:text-indigo-600">
-              Educators Guild
-            </a>
-            <a href="#" className="hover:text-indigo-600">
-              Partner With Us
-            </a>
-            <a href="#" className="hover:text-indigo-600">
-              Terms & Privacy
-            </a>
+          {/* Policy Links */}
+          <div className="flex flex-wrap justify-center gap-4 mt-2 sm:mt-0 text-center">
+            <span>Privacy Policy</span>
+            <span>Terms of Service</span>
+            <span>Cookies Preferences</span>
+            <span>Data Ethics & R&D Participation Policy</span>
           </div>
 
           {/* Copyright */}
-          <p className="mt-6 md:mt-0 text-sm text-gray-500">
-            © 2024 Studomia
+          <p className="mt-2 sm:mt-0 text-center">
+            © {new Date().getFullYear()}, Studomia Guild.
           </p>
         </div>
-      </footer>
-    </section>
+      </div>
+    </footer>
   );
-}
+};
+
+export default Footer;

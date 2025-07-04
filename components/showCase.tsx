@@ -76,7 +76,7 @@ export default function ShowcaseSection() {
         {/* Main card */}
         <div
           style={{ backgroundColor: cards[current].bgColor }}
-          className="rounded-3xl p-8 w-full max-w-5xl min-h-[450px] shadow-lg flex flex-col sm:flex-row  md:items-center items-start gap-6 text-white"
+          className="rounded-3xl p-8 w-full max-w-2xl min-h-[450px] shadow-lg flex flex-col sm:flex-row  md:items-center items-start gap-6 text-white"
         >
           <CardContent card={cards[current]} />
         </div>

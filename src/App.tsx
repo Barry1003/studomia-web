@@ -8,7 +8,9 @@ import Educator from '../components/Education';
 import Admin from '../components/Admin';
 import GuildEventsSection from '../components/GuildSection'; 
 import CoCreateSection from '../components/Guild';
-import FAQSignupSection from '../components/footer';
+import FAQSignupSection from '../components/faq';
+import Footer from '../components/footer';
+
 
 function App() {
 
@@ -24,6 +26,7 @@ function App() {
     <GuildEventsSection/> 
     <CoCreateSection/>
     <FAQSignupSection/>
+    <Footer/>
     </>
   )
 }
