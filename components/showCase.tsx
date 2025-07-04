@@ -1,11 +1,50 @@
-import { ArrowLeftCircle, ArrowRightCircle, Palette } from 'lucide-react';
-import React from 'react';
+import React, { useState } from "react";
+import { ArrowLeftCircle, ArrowRightCircle, Palette } from "lucide-react";
+import useCarousel from "./carousel";
+
+const cards = [
+  {
+    title: "🎨 Showcase Your Works",
+    subtitle: "🖼 Build your portfolio, highlight your creative talents, and present your best projects.",
+    cta: "Start My Portfolio",
+    image: "/section2.1.png",
+    bgColor: "#8638E5",
+  },
+  {
+    title: "💼 Turn Your Creativity Into Opportunity",
+    subtitle: "🤝 Monetize your work, collaborate with peers, and get discovered by organizations—all from your profile.",
+    cta: "Launch Your Creative Profile",
+    image: "/CardContent2.png",
+    bgColor: "#8638E5",
+  },
+  {
+    title: "🧠 Create Smarter, Express Freely",
+    subtitle: "⚡ Use AI-powered tools to streamline your creative process, gain insights, and bring your ideas to life",
+    cta: "Create With AI Tools  ",
+    image: "/CardContent3.png",
+    bgColor: "#8638E5",
+  },
+];
 
 export default function ShowcaseSection() {
+   const {onSwipeX } = useCarousel(cards.length);
+  const [current, setCurrent] = useState(0);
+  const length = cards.length;
+
+  const prevSlide = () => {
+    setCurrent((current - 1 + length) % length);
+  };
+  const nextSlide = () => {
+    setCurrent((current + 1) % length);
+  };
+
+  const leftIndex = (current - 1 + length) % length;
+  const rightIndex = (current + 1) % length;
+
   return (
     <section className="w-full bg-white py-10 overflow-hidden px-4 flex flex-col items-center">
       {/* Section Header */}
-      <div className="mb-8 border-2 border-dotted border-blue-300 px-4 py-1 rounded-md flex items-center gap-2">
+      <div className="mb-8 border-2 border-dotted border-blue-300 px-4 py-1 rounded-md flex items-center gap-2 max-w-4xl w-full">
         <Palette className="text-yellow-500" />
         <h2 className="text-blue-900 font-bold text-lg">
           Creatives, Professionals & Talents
@@ -13,74 +52,93 @@ export default function ShowcaseSection() {
       </div>
 
       {/* Showcase Container */}
-      <div className="flex items-center justify-center gap-4 w-full max-w-full relative">
+      <div 
+      {...onSwipeX}
+      className="relative flex items-center justify-center gap-4 max-w-full w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Left blurred card */}
-        
-           
-        <div className="w-[523px] h-[350px]  absolute -left-60    rounded-2xl flex items-center justify-center">
-          <ArrowLeftCircle size={40} className='text-white z-10 relative -left-1/2'/>
-          <div className="w-[523px] h-[350px] bg-[#8B5CF6]     rounded-2xl flex items-center justify-center">
-            <div className="w-[523px] h-[350px] bg-[#8B5CF6]   blur-sm  rounded-2xl flex items-center justify-center">
-              <div className="flex  items-center h-[363px]  w-full justify-btween">
-                      <div className="text-white flex flex-col gap-9 w-1/2 flex-wrap justify-between items-start">
-                        <h3 className="text-4xl font-bold">🎨Showcase Your Works</h3>
-                        <p className="text-xl font-bold">Build Your Portfolio, Creative Talents, & Projects</p>
-                        <p className="text-sm">Start My Portfolio</p>
-                      </div>
-                
-                      {/* Portfolio Image */}
-                    <img
-                      src="../public/section2.1.png"
-                      alt="Portfolio Screenshot"
-                      className="rounded-lg mt-4 object-contain w-[460px] h-[400px]"
-                    />
-            </div>
-          </div>
-          </div>
+        <div
+          style={{ backgroundColor: cards[leftIndex].bgColor }}
+          className="hidden md:flex absolute -left-40 top-0 rounded-2xl w-96 h-[450px] items-center justify-center filter blur-sm select-none pointer-events-none"
+        >
+          <CardContent card={cards[leftIndex]} blurred />
         </div>
-        
-          
-        
 
-        {/* Main Card */}
-        <div className="bg-[#8B5CF6] text-white rounded-3xl p-8 w-[750px] min-h-[463px] shadow-lg">
-          <div className="flex  items-center h-[363px]  w-full justify-btween">
-            <div className="text-white flex flex-col gap-9 w-1/2 flex-wrap justify-between items-start">
-              <h3 className="text-4xl font-bold">🎨Showcase Your Works</h3>
-              <p className="text-xl font-bold">Build Your Portfolio, Creative Talents, & Projects</p>
-              <p className="text-sm">Start My Portfolio</p>
-            </div>
-      
-            {/* Portfolio Image */}
-          <img
-            src="../public/section2.1.png"
-            alt="Portfolio Screenshot"
-            className="rounded-lg mt-4 object-contain w-[460px] h-[400px]"
-          />
-          </div>
+        {/* Left arrow */}
+        <button
+          onClick={prevSlide}
+          aria-label="Previous Slide"
+          className="absolute left-0 z-20 p-2 rounded-full bg-[#9093F5] bg-opacity-70 hover:bg-opacity-100 transition hidden md:flex"
+          style={{ top: "calc(50% - 20px)" }}
+        >
+          <ArrowLeftCircle size={40} className="text-white" />
+        </button>
+
+        {/* Main card */}
+        <div
+          style={{ backgroundColor: cards[current].bgColor }}
+          className="rounded-3xl p-8 w-full max-w-5xl min-h-[450px] shadow-lg flex flex-col sm:flex-row  md:items-center items-start gap-6 text-white"
+        >
+          <CardContent card={cards[current]} />
         </div>
+
+        {/* Right arrow */}
+        <button
+          onClick={nextSlide}
+          aria-label="Next Slide"
+          className="absolute right-0 z-20 p-2 rounded-full bg-[#9093F5] bg-opacity-70 hover:bg-opacity-100 transition hidden md:flex"
+          style={{ top: "calc(50% - 20px)" }}
+        >
+          <ArrowRightCircle size={40} className="text-white" />
+        </button>
 
         {/* Right blurred card */}
-        <div className="w-[523px] h-[350px]  absolute -right-60 rounded-2xl flex items-center justify-center">
-          <ArrowRightCircle size={40} className="text-white relative z-10 -right-1/3" />
-          <div className="w-[523px] h-[350px] bg-[#8B5CF6]   blur-sm  rounded-2xl flex items-center justify-center">
-              <div className="flex  items-center h-[363px]  w-full justify-btween">
-                      <div className="text-white flex flex-col gap-9 w-1/2 flex-wrap justify-between items-start">
-                        <h3 className="text-4xl font-bold">🎨Showcase Your Works</h3>
-                        <p className="text-xl font-bold">Build Your Portfolio, Creative Talents, & Projects</p>
-                        <p className="text-sm">Start My Portfolio</p>
-                      </div>
-                
-                      {/* Portfolio Image */}
-                    <img
-                      src="../public/section2.1.png"
-                      alt="Portfolio Screenshot"
-                      className="rounded-lg mt-4 object-contain w-[460px] h-[400px]"
-                    />
-             </div>
-          </div>
+        <div
+          style={{ backgroundColor: cards[rightIndex].bgColor }}
+          className="hidden md:flex absolute -right-40 top-0 rounded-2xl w-96 h-[450px] items-center justify-center filter blur-sm select-none pointer-events-none"
+        >
+          <CardContent card={cards[rightIndex]} blurred />
         </div>
       </div>
     </section>
+  );
+}
+
+function CardContent({
+  card,
+  blurred = false,
+}: {
+  card: {
+    title: string;
+    subtitle: string;
+    cta: string;
+    image: string;
+    bgColor: string;
+  };
+  blurred?: boolean;
+}) {
+  return (
+    <>
+      <div className="flex flex-col gap-12 w-full sm:w-1/2 flex-wrap justify-even items-start select-none">
+        <h3
+          className={`text-4xl font-bold leading-snug ${
+            blurred ? "opacity-60" : ""
+          }`}
+        >
+          {card.title}
+        </h3>
+         <p className={`text-xl font-semibold ${blurred ? "opacity-50" : ""}`}>
+          {card.subtitle}
+        </p>
+        <h4 className={`text-sm ${blurred ? "opacity-40" : ""}`}>{card.cta}</h4>
+      </div>
+      <img
+        src={card.image}
+        alt={card.title}
+        className={`rounded-lg mt-4 object-contain w-full sm:w-1/2 h-[420px] ${
+          blurred ? "opacity-40" : ""
+        }`}
+        draggable={false}
+      />
+    </>
   );
 }
