@@ -31,6 +31,11 @@ const cardList = [
 export default function Educator() {
   const { index, setIndex, onSwipeY, handleNext } = useCarousel(cardList.length);
 
+  // Safe guard to prevent out-of-range access
+  if (index < 0 || index >= cardList.length) return null;
+
+  const card = cardList[index];
+
   return (
     <section className="bg-white py-12">
       {/* Badge */}
@@ -39,7 +44,9 @@ export default function Educator() {
           <span className="mr-2">🧱</span>
           For Educators, Teachers, Trainers & Coaches
         </span>
-        <div className="font-semiblod text-xl my-8">📊 Track student progress, ✨ personalize learning, and 📁 manage teaching artifacts.</div>
+        <div className="font-semibold text-xl my-8">
+          📊 Track student progress, ✨ personalize learning, and 📁 manage teaching artifacts.
+        </div>
       </div>
 
       {/* Slide container */}
@@ -55,36 +62,35 @@ export default function Educator() {
               }`}
             ></div>
           ))}
-          <div className="p-2 rounded-full bg-[#2BF388] cursor-pointer" onClick={handleNext}><CircleArrowDown size={20} className="text-white"/></div>
+          <div className="p-2 rounded-full bg-[#2BF388] cursor-pointer" onClick={handleNext}>
+            <CircleArrowDown size={20} className="text-white" />
+          </div>
         </div>
 
         {/* Current card only */}
         <div
           {...onSwipeY}
-          className="relative bg-[#0D15EA] w-full md:w-[1066pX] rounded-2xl"
+          className="relative bg-[#0D15EA] w-full md:w-[1066px] rounded-2xl"
         >
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center p-10 md:pl-36">
-          {/* Text Content */}
-          <div className="text-white space-y-6 order-2 md:order-1">
-            <h1 className="text-xl md:text-3xl font-bold leading-snug">
-              {cardList[index].title}
-            </h1>
-            <p className="text-lg opacity-80">{cardList[index].subtitle}</p>
-            <p className="text-base opacity-80">
-              {cardList[index].description}
-            </p>
-          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center p-10 md:pl-36">
+            {/* Text Content */}
+            <div className="text-white space-y-6 order-2 md:order-1">
+              <h1 className="text-xl md:text-3xl font-bold leading-snug">
+                {card.title}
+              </h1>
+              <p className="text-lg opacity-80">{card.subtitle}</p>
+              <p className="text-base opacity-80">{card.description}</p>
+            </div>
 
-          {/* Image Placeholder */}
-          <div className="w-full h-[455px] md:h-[547px] bg-blue-900 rounded-xl order-1 md:order-2">
-            <img
-              src={cardList[index].Image}
-              alt=""
-              className="w-full h-full object-contain"
-            />
+            {/* Image Placeholder */}
+            <div className="w-full h-[455px] md:h-[547px] bg-blue-900 rounded-xl order-1 md:order-2">
+              <img
+                src={card.Image}
+                alt=""
+                className="w-full h-full object-contain"
+              />
+            </div>
           </div>
-        </div>
-
         </div>
       </div>
     </section>

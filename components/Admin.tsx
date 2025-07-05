@@ -1,4 +1,4 @@
- import useCarousel from "./carousel";
+import useCarousel from "./carousel";
 import { CircleArrowRight } from "lucide-react";
 
 const adminCards = [
@@ -16,7 +16,7 @@ const adminCards = [
     ),
     tagline: "Build visibility. Strengthen credibility. Grow with purpose.",
     buttonText: "Now enrolling verified institutions – Apply for early access",
-    Image: "/Section4.1.png"
+    Image: "/Section4.1.png",
   },
   {
     title: "Highlight Your School’s Achievements.",
@@ -30,22 +30,7 @@ const adminCards = [
     ),
     tagline: "Pride in performance. Power in visibility.",
     buttonText: "Upload your school's highlights today",
-    Image: "/Section4.2.png"
-  },
-  {
-    title: "Empower Your Staff and Culture.",
-    intro: (
-      <>
-        <strong className="font-semibold text-gray-900">
-          💼 Equip Leaders & Educators
-        </strong>{" "}
-        
-        – Provide tools and spaces for collaboration, evaluation, and growth.
-      </>
-    ),
-    tagline: "A strong culture builds strong schools.",
-    buttonText: "Explore leadership tools now",
-    Image: "/Section4.3.png"
+    Image: "/Section4.2.png",
   },
   {
     title: "Empower Your Staff and Culture.",
@@ -59,12 +44,30 @@ const adminCards = [
     ),
     tagline: "A strong culture builds strong schools.",
     buttonText: "Explore leadership tools now",
-    Image: "/Section4.4.png"
+    Image: "/Section4.3.png",
+  },
+  {
+    title: "Empower Your Staff and Culture.",
+    intro: (
+      <>
+        <strong className="font-semibold text-gray-900">
+          💼 Equip Leaders & Educators
+        </strong>{" "}
+        – Provide tools and spaces for collaboration, evaluation, and growth.
+      </>
+    ),
+    tagline: "A strong culture builds strong schools.",
+    buttonText: "Explore leadership tools now",
+    Image: "/Section4.4.png",
   },
 ];
 
 export default function Admin() {
-  const { index, setIndex, onSwipeX , handleNext} = useCarousel(adminCards.length);
+  const { index, setIndex, onSwipeX, handleNext } = useCarousel(adminCards.length);
+
+  // Safe guard: if index is invalid, return nothing
+  if (index < 0 || index >= adminCards.length) return null;
+
   const card = adminCards[index];
 
   return (
@@ -74,8 +77,10 @@ export default function Admin() {
         <span className="inline-flex items-center bg-green-50 text-green-800 text-sm font-medium px-3 py-1 rounded-full">
           <span className="mr-2">🏫</span>
           For Administrators, School-Level Leaders And Cultural Leaders
-        </span>\
-        <div className="font-semibold text-xl">📈 Unlock data-driven insights, 🤝 engage communities, and 🧩 transform institutional effectiveness.</div>
+        </span>
+        <div className="font-semibold text-xl">
+          📈 Unlock data-driven insights, 🤝 engage communities, and 🧩 transform institutional effectiveness.
+        </div>
       </div>
 
       {/* 🟩 Card container with swipe handling */}
@@ -89,7 +94,7 @@ export default function Admin() {
 
           <p className="text-base font-medium text-gray-800">{card.tagline}</p>
 
-          <button className="inline-flex items-center border-2 border-indigo-300 text-[#272E3D]  text-xl font-bold rounded-full px-5 py-3 hover:bg-indigo-50 transition">
+          <button className="inline-flex items-center border-2 border-indigo-300 text-[#272E3D] text-xl font-bold rounded-full px-5 py-3 hover:bg-indigo-50 transition">
             <span className="mr-2">🔐</span>
             {card.buttonText}
           </button>
@@ -97,7 +102,7 @@ export default function Admin() {
 
         {/* 🖼 Mockup */}
         <div className="mt-12">
-          <div className={`w-full   rounded-xl`}>
+          <div className="w-full rounded-xl">
             <img src={card.Image} className="object-cover" alt="" />
           </div>
         </div>
@@ -114,7 +119,9 @@ export default function Admin() {
             }`}
           ></span>
         ))}
-        <div className="p-2 rounded-full bg-[#2BF388] cursor-pointer" onClick={handleNext}><CircleArrowRight size={20} className="text-white"/></div>
+        <div className="p-2 rounded-full bg-[#2BF388] cursor-pointer" onClick={handleNext}>
+          <CircleArrowRight size={20} className="text-white" />
+        </div>
       </div>
     </section>
   );

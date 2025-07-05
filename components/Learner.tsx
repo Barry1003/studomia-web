@@ -1,4 +1,4 @@
- import { ArrowRight, ArrowRightCircle } from "lucide-react"; 
+import { ArrowRight, ArrowRightCircle } from "lucide-react";
 import useCarousel from "./carousel";
 
 const slides = [
@@ -11,7 +11,8 @@ const slides = [
   },
   {
     title: "🚀 Navigate Your Learning-to-Career Path With Confidence",
-    subtitle: "📈 Track progress, 🎯 unlock new opportunities, and gain 🧠 skill-based insights—every step of your journey, from school to success.",
+    subtitle:
+      "📈 Track progress, 🎯 unlock new opportunities, and gain 🧠 skill-based insights—every step of your journey, from school to success.",
     buttonText: "Explore My Path",
     image: "/section1.2.png",
   },
@@ -26,6 +27,10 @@ const slides = [
 
 export default function LearnerSection() {
   const { index, setIndex, handleNext, handlePrev, onSwipeX } = useCarousel(slides.length);
+
+  // Type guard: prevent out-of-bounds errors
+  if (index < 0 || index >= slides.length) return null;
+
   const current = slides[index];
 
   return (
@@ -38,8 +43,7 @@ export default function LearnerSection() {
         <button
           onClick={handlePrev}
           className="hidden md:flex absolute left-0 top-1/2 transform -translate-y-1/2 z-10"
-        > 
-        </button>
+        ></button>
 
         <img
           src={current.image}
@@ -71,18 +75,14 @@ export default function LearnerSection() {
               key={i}
               onClick={() => setIndex(i)}
               className={`w-[88px] h-1 rounded-full cursor-pointer transition-all duration-300 ${
-                i === index ? "bg-[#8F5AAF]" : "bg-[#0D15EA]"  
+                i === index ? "bg-[#8F5AAF]" : "bg-[#0D15EA]"
               }`}
             ></span>
           ))}
-          
 
-        <button
-          onClick={handleNext}
-          className=""
-        >
-          <ArrowRightCircle size={30} className="text-blue-700 ml-2" />
-        </button>
+          <button onClick={handleNext}>
+            <ArrowRightCircle size={30} className="text-blue-700 ml-2" />
+          </button>
         </div>
       </div>
     </section>

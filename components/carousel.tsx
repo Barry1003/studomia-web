@@ -19,10 +19,13 @@ export default function useCarousel(length: number) {
 
   // Touch X
   const handleTouchStartX = (e: React.TouchEvent) => {
-    setTouchStartX(e.targetTouches[0].clientX);
+    if (e.targetTouches.length > 0) {
+      setTouchStartX(e.targetTouches[0].clientX);
+    }
   };
 
   const handleTouchEndX = (e: React.TouchEvent) => {
+    if (e.changedTouches.length === 0) return;
     const touchEnd = e.changedTouches[0].clientX;
     const delta = touchStartX - touchEnd;
 
@@ -32,10 +35,13 @@ export default function useCarousel(length: number) {
 
   // Touch Y
   const handleTouchStartY = (e: React.TouchEvent) => {
-    setTouchStartY(e.targetTouches[0].clientY);
+    if (e.targetTouches.length > 0) {
+      setTouchStartY(e.targetTouches[0].clientY);
+    }
   };
 
   const handleTouchEndY = (e: React.TouchEvent) => {
+    if (e.changedTouches.length === 0) return;
     const touchEnd = e.changedTouches[0].clientY;
     const delta = touchStartY - touchEnd;
 
