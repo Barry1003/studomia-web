@@ -16,30 +16,34 @@ export default function useCarousel(length: number) {
   };
 
   const handleTouchStartX = (e: React.TouchEvent) => {
-    if (e.targetTouches.length > 0) {
-      setTouchStartX(e.targetTouches[0].clientX);
+    const touch = e.targetTouches[0];
+    if (touch) {
+      setTouchStartX(touch.clientX);
     }
   };
 
   const handleTouchEndX = (e: React.TouchEvent) => {
-    if (e.changedTouches.length === 0) return;
-    const touchEnd = e.changedTouches[0].clientX;
-    const delta = touchStartX - touchEnd;
+    const touch = e.changedTouches[0];
+    if (!touch) return;
+
+    const delta = touchStartX - touch.clientX;
 
     if (delta > 50) handleNext();
     else if (delta < -50) handlePrev();
   };
 
   const handleTouchStartY = (e: React.TouchEvent) => {
-    if (e.targetTouches.length > 0) {
-      setTouchStartY(e.targetTouches[0].clientY);
+    const touch = e.targetTouches[0];
+    if (touch) {
+      setTouchStartY(touch.clientY);
     }
   };
 
   const handleTouchEndY = (e: React.TouchEvent) => {
-    if (e.changedTouches.length === 0) return;
-    const touchEnd = e.changedTouches[0].clientY;
-    const delta = touchStartY - touchEnd;
+    const touch = e.changedTouches[0];
+    if (!touch) return;
+
+    const delta = touchStartY - touch.clientY;
 
     if (delta > 50) handleNext();
     else if (delta < -50) handlePrev();
