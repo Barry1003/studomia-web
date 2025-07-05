@@ -1,5 +1,4 @@
-import React from "react";
-import { ArrowRight, ArrowRightCircle } from "lucide-react"; 
+ import { ArrowRight, ArrowRightCircle } from "lucide-react"; 
 import useCarousel from "./carousel";
 
 const slides = [
