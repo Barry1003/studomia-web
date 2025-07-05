@@ -65,10 +65,10 @@ const adminCards = [
 export default function Admin() {
   const { index, setIndex, onSwipeX, handleNext } = useCarousel(adminCards.length);
 
-  // Safe guard: if index is invalid, return nothing
-  if (index < 0 || index >= adminCards.length) return null;
-
+  // Get the current card and ensure it's defined
   const card = adminCards[index];
+
+  if (!card) return null; // fallback if card is undefined
 
   return (
     <section className="bg-white py-16">

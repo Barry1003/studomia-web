@@ -3,12 +3,10 @@ import { useState } from "react";
 export default function useCarousel(length: number) {
   const [index, setIndex] = useState(0);
 
-  // Swipe/drag start positions
   const [touchStartX, setTouchStartX] = useState(0);
   const [touchStartY, setTouchStartY] = useState(0);
   const [mouseStartX, setMouseStartX] = useState<number | null>(null);
 
-  // Navigation
   const handleNext = () => {
     setIndex((prev) => (prev + 1) % length);
   };
@@ -17,7 +15,6 @@ export default function useCarousel(length: number) {
     setIndex((prev) => (prev - 1 + length) % length);
   };
 
-  // Touch X
   const handleTouchStartX = (e: React.TouchEvent) => {
     if (e.targetTouches.length > 0) {
       setTouchStartX(e.targetTouches[0].clientX);
@@ -33,7 +30,6 @@ export default function useCarousel(length: number) {
     else if (delta < -50) handlePrev();
   };
 
-  // Touch Y
   const handleTouchStartY = (e: React.TouchEvent) => {
     if (e.targetTouches.length > 0) {
       setTouchStartY(e.targetTouches[0].clientY);
@@ -49,7 +45,6 @@ export default function useCarousel(length: number) {
     else if (delta < -50) handlePrev();
   };
 
-  // Mouse drag
   const handleMouseDown = (e: React.MouseEvent) => {
     setMouseStartX(e.clientX);
   };

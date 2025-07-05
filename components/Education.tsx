@@ -10,19 +10,22 @@ const cardList = [
   },
   {
     title: "📊 Teach Smarter With Real-Time Insight",
-    subtitle: "📈 Use AI-backed dashboards and analytics to personalize instruction, monitor impact, and improve learner outcomes.",
+    subtitle:
+      "📈 Use AI-backed dashboards and analytics to personalize instruction, monitor impact, and improve learner outcomes.",
     Image: "Section3.2.png",
     description: "Join as a Business Owner or Startup Founder",
   },
   {
     title: "📁 Build and Showcase Your Educator Identity",
-    subtitle: "🧑‍🏫 Curate your teaching journey, document classroom success, and grow your presence across the Guild.",
+    subtitle:
+      "🧑‍🏫 Curate your teaching journey, document classroom success, and grow your presence across the Guild.",
     Image: "Section3.3.png",
     description: "Build Your Educator Portfolio",
   },
   {
     title: "✏️ Design Smarter Lessons. Teach With Impact",
-    subtitle: "🧩 Use AI-supported planning tools to confidently build, personalize, and publish dynamic learning resources—tailored to every learner's needs.",
+    subtitle:
+      "🧩 Use AI-supported planning tools to confidently build, personalize, and publish dynamic learning resources—tailored to every learner's needs.",
     Image: "Section3.4.png",
     description: "Start Planning with AI",
   },
@@ -31,10 +34,8 @@ const cardList = [
 export default function Educator() {
   const { index, setIndex, onSwipeY, handleNext } = useCarousel(cardList.length);
 
-  // Safe guard to prevent out-of-range access
-  if (index < 0 || index >= cardList.length) return null;
-
   const card = cardList[index];
+  if (!card) return null;
 
   return (
     <section className="bg-white py-12">

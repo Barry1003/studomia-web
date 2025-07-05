@@ -34,7 +34,6 @@ export default function ShowcaseSection() {
   const [current, setCurrent] = useState(0);
   const length = cards.length;
 
-  // Guard if no cards to avoid undefined errors
   if (length === 0) return null;
 
   const prevSlide = () => {
@@ -47,10 +46,9 @@ export default function ShowcaseSection() {
   const leftIndex = (current - 1 + length) % length;
   const rightIndex = (current + 1) % length;
 
-  // Local card variables
-  const currentCard = cards[current];
-  const leftCard = cards[leftIndex];
-  const rightCard = cards[rightIndex];
+  const currentCard = cards[current]!;
+  const leftCard = cards[leftIndex]!;
+  const rightCard = cards[rightIndex]!;
 
   return (
     <section className="w-full bg-white py-8 sm:py-10 px-4 flex flex-col items-center overflow-x-visible relative">

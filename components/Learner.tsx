@@ -28,10 +28,8 @@ const slides = [
 export default function LearnerSection() {
   const { index, setIndex, handleNext, handlePrev, onSwipeX } = useCarousel(slides.length);
 
-  // Type guard: prevent out-of-bounds errors
-  if (index < 0 || index >= slides.length) return null;
-
   const current = slides[index];
+  if (!current) return null;
 
   return (
     <section
