@@ -1,5 +1,5 @@
 import { PlayIcon } from '@heroicons/react/24/solid'
-import React from 'react'
+
  
 
 const userTypes = [
@@ -7,8 +7,8 @@ const userTypes = [
     title: 'Learners & Students',
     emoji: '🧑‍🎓',
     avatars: [
-      '../public/Avater1.0.png',
-      '../public/Avater1.1.png',
+      '/Avater1.0.png',
+      '/Avater1.1.png',
     ],
     PlayIcon: <PlayIcon className="text-[#ADB0FA] text-lg" />,
   },
@@ -16,8 +16,8 @@ const userTypes = [
     title: 'Creatives & Professionals',
     emoji: '🎨',
     avatars: [
-      '../public/Avater1.2.png',
-      '../public/Avater1.3.png',
+      '/Avater1.2.png',
+      '/Avater1.3.png',
     ],
     PlayIcon: <PlayIcon className="text-[#D2AAE9] text-lg" />,
   },
@@ -25,8 +25,8 @@ const userTypes = [
     title: 'Educators & Teachers',
     emoji: '🧑‍🏫',
     avatars: [
-      '../public/Avater1.4.png',
-      '../public/Avater1.5.png',
+      '/Avater1.4.png',
+      '/Avater1.5.png',
     ],
     PlayIcon: < PlayIcon className="text-[#CFF7D3] text-lg" />,
   },
@@ -34,8 +34,8 @@ const userTypes = [
     title: 'Administrators & School Leaders',
     emoji: '🏫',
     avatars: [
-      '../public/Avater1.6.png',
-      '../public/Avater1.7.png',
+      '/Avater1.6.png',
+      '/Avater1.7.png',
     ],
     
     PlayIcon: < PlayIcon className="text-[#CBFFDE] text-lg" />,

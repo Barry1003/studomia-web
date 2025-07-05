@@ -1,5 +1,5 @@
-import React from "react";
-import useCarousel from "./carousel";
+ import useCarousel from "./carousel";
+import { CircleArrowRight } from "lucide-react";
 
 const adminCards = [
   {
@@ -64,17 +64,18 @@ const adminCards = [
 ];
 
 export default function Admin() {
-  const { index, setIndex, onSwipeX } = useCarousel(adminCards.length);
+  const { index, setIndex, onSwipeX , handleNext} = useCarousel(adminCards.length);
   const card = adminCards[index];
 
   return (
     <section className="bg-white py-16">
       {/* 🔒 Header stays static */}
-      <div className="flex justify-center mb-8">
+      <div className="flex flex-col items-center justify-center mb-8">
         <span className="inline-flex items-center bg-green-50 text-green-800 text-sm font-medium px-3 py-1 rounded-full">
           <span className="mr-2">🏫</span>
           For Administrators, School-Level Leaders And Cultural Leaders
-        </span>
+        </span>\
+        <div className="font-semibold text-xl">📈 Unlock data-driven insights, 🤝 engage communities, and 🧩 transform institutional effectiveness.</div>
       </div>
 
       {/* 🟩 Card container with swipe handling */}
@@ -88,7 +89,7 @@ export default function Admin() {
 
           <p className="text-base font-medium text-gray-800">{card.tagline}</p>
 
-          <button className="inline-flex items-center border-2 border-indigo-300 text-indigo-600 text-sm font-medium rounded-full px-5 py-2 hover:bg-indigo-50 transition">
+          <button className="inline-flex items-center border-2 border-indigo-300 text-[#272E3D]  text-xl font-bold rounded-full px-5 py-3 hover:bg-indigo-50 transition">
             <span className="mr-2">🔐</span>
             {card.buttonText}
           </button>
@@ -96,23 +97,24 @@ export default function Admin() {
 
         {/* 🖼 Mockup */}
         <div className="mt-12">
-          <div className={`w-full h-90 rounded-xl`}>
+          <div className={`w-full   rounded-xl`}>
             <img src={card.Image} className="object-cover" alt="" />
           </div>
         </div>
       </div>
 
       {/* ⭕ Pagination Dots */}
-      <div className="mt-12 flex justify-center space-x-2">
+      <div className="mt-12 flex justify-center gap-4 items-center space-x-2">
         {adminCards.map((_, i) => (
           <span
             key={i}
             onClick={() => setIndex(i)}
-            className={`cursor-pointer w-10 h-1 rounded-full transition ${
-              i === index ? "bg-green-400" : "bg-gray-200"
+            className={`cursor-pointer w-20 h-1.5 rounded-full transition ${
+              i === index ? "bg-[#0D15EA]" : "bg-[#9747FF]"
             }`}
           ></span>
         ))}
+        <div className="p-2 rounded-full bg-[#2BF388] cursor-pointer" onClick={handleNext}><CircleArrowRight size={20} className="text-white"/></div>
       </div>
     </section>
   );

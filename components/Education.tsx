@@ -1,4 +1,3 @@
-import React from "react"; 
 import useCarousel from "./carousel";
 import { CircleArrowDown } from "lucide-react";
 
@@ -35,11 +34,12 @@ export default function Educator() {
   return (
     <section className="bg-white py-12">
       {/* Badge */}
-      <div className="flex justify-center mb-6">
+      <div className="flex flex-col items-center justify-center mb-6">
         <span className="inline-flex items-center bg-green-100 text-green-800 text-sm font-medium px-3 py-1 rounded-full">
           <span className="mr-2">🧱</span>
           For Educators, Teachers, Trainers & Coaches
         </span>
+        <div className="font-semiblod text-xl my-8">📊 Track student progress, ✨ personalize learning, and 📁 manage teaching artifacts.</div>
       </div>
 
       {/* Slide container */}
@@ -63,27 +63,28 @@ export default function Educator() {
           {...onSwipeY}
           className="relative bg-[#0D15EA] w-full md:w-[1066pX] rounded-2xl"
         >
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center p-10 md:pl-36">
-            <div className="text-white space-y-6">
-              <h1 className="text-xl md:text-3xl font-bold leading-snug">
-                {cardList[index].title}
-              </h1>
-              <p className="text-lg opacity-80">{cardList[index].subtitle}</p>
-              <p className="text-base opacity-80">
-                {cardList[index].description}
-              </p>
-            </div>
-
-            {/* Placeholder */}
-      <div className="w-full h-[755px] md:h-[547px] bg-blue-900 rounded-xl">
-  <img
-    src={cardList[index].Image}
-    alt=""
-    className="w-full h-full object-cotain"
-  />
-</div>
-
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center p-10 md:pl-36">
+          {/* Text Content */}
+          <div className="text-white space-y-6 order-2 md:order-1">
+            <h1 className="text-xl md:text-3xl font-bold leading-snug">
+              {cardList[index].title}
+            </h1>
+            <p className="text-lg opacity-80">{cardList[index].subtitle}</p>
+            <p className="text-base opacity-80">
+              {cardList[index].description}
+            </p>
           </div>
+
+          {/* Image Placeholder */}
+          <div className="w-full h-[455px] md:h-[547px] bg-blue-900 rounded-xl order-1 md:order-2">
+            <img
+              src={cardList[index].Image}
+              alt=""
+              className="w-full h-full object-contain"
+            />
+          </div>
+        </div>
+
         </div>
       </div>
     </section>

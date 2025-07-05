@@ -1,6 +1,6 @@
 // GuildEventsSection.jsx
 import { Calendar, MapPin } from "lucide-react";
-import React from "react";
+
 
 const events = [
   {
@@ -117,7 +117,7 @@ export default function GuildEventsSection() {
                 <button className="w-full px-6 py-2 bg-[#0D15EA] text-white text-2xl font-medium rounded-md hover:bg-blue-700 transition">
                   {e.primaryText}
                 </button>
-                <button className="w-full px-4 py-2 border-2 border-gray-300 text-2xl text-gray-700 font-medium rounded-md hover:bg-gray-50 transition">
+                <button className="w-full px-4 py-2 border-2 border-[#9093F5] text-xl text-gray-700 font-medium rounded-md hover:bg-gray-50 transition">
                   {e.secondaryText}
                 </button>
               </div>
